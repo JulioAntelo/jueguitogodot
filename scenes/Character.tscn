@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://yhf5r2kcqf7q"]
+[gd_scene load_steps=30 format=3 uid="uid://yhf5r2kcqf7q"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_8dt06"]
 [ext_resource type="Texture2D" uid="uid://o6ndb25leajn" path="res://characters/AnimationSheet_Character.png" id="1_ppi6n"]
@@ -26,38 +26,6 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ollen"]
 atlas = ExtResource("1_ppi6n")
 region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ilck1"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(0, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_heuwt"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(32, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qr6cv"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(64, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_se81l"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(96, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clxp7"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(128, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4amt"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(160, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wk6mg"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(192, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ob7ou"]
-atlas = ExtResource("1_ppi6n")
-region = Rect2(224, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_try0w"]
 atlas = ExtResource("1_ppi6n")
@@ -168,35 +136,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ilck1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_heuwt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qr6cv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_se81l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_clxp7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4amt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wk6mg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ob7ou")
-}],
-"loop": true,
-"name": &"attack-melee",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_try0w")
 }, {
 "duration": 1.0,
@@ -277,9 +216,15 @@ script = ExtResource("1_8dt06")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ivtvm")
-animation = &"jump"
-frame_progress = 0.882326
+animation = &"death"
+frame_progress = 0.11316
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_4f348")
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="WallJumpTimer" to="." method="_on_wall_jump_timer_timeout"]
