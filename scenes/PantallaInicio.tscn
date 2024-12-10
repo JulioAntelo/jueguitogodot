@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://blmahs28davnt"]
+
+[ext_resource type="Texture2D" uid="uid://24tsj5im8xd1" path="res://tilesets/girl-red-jacket-is-looking-giant-ice-cave_1051578-33314.jpg" id="1_8g5gl"]
+[ext_resource type="Script" path="res://scripts/pantalla_inicio.gd" id="1_u1w1q"]
+
+[sub_resource type="GDScript" id="GDScript_j7cik"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1w1q")
+
+[node name="Girl-red-jacket-is-looking-giant-ice-cave1051578-33314" type="Sprite2D" parent="."]
+position = Vector2(575.5, 322.25)
+scale = Vector2(1.83866, 1.83333)
+texture = ExtResource("1_8g5gl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -322.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_j7cik")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "COMENZAR"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SALIR"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "CREDITOS"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

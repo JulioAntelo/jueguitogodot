@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED =100.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -325.0
 const WALL_SLIDING_SPEED = 1200
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") 
@@ -25,10 +25,27 @@ func _physics_process (delta):
 			velocity.y = JUMP_VELOCITY
 			jumpsMade += 1
 			
+			
+	if direction > 0 :
+		$AnimatedSprite2D.flip_h = false
+	elif direction <0 :
+		$AnimatedSprite2D.flip_h = true
 	
-		
+	
+	if is_on_floor():
+		if direction == 0:
+			$AnimatedSprite2D.play("Idle")
+		else:
+			$AnimatedSprite2D.play("run")
+	else:
+		$AnimatedSprite2D.play("jump")
+	
 	if direction && not doWallJump: velocity.x = direction * SPEED
 	elif not doWallJump: velocity.x = move_toward(velocity.x, 0,SPEED)
+	
+	
+	
+	get_node("AnimatedSprite2D")
 	
 	move_and_slide()
 
